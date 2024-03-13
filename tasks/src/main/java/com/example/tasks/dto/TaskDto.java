@@ -15,6 +15,7 @@ public class TaskDto {
     private Long id;
     private String toDo;
     private String status;
+    private Long userId;
     private String username;
     private LocalDate beginDate;
     private LocalDate completedDate;

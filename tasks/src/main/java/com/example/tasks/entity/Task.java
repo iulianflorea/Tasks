@@ -19,8 +19,10 @@ public class Task {
     private Long id;
     private Status status;
     private String toDo;
-    @ManyToOne
     @Column(name = "user_id")
+    private Long userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
     private LocalDate beginDate;
     private LocalDate completedData;
