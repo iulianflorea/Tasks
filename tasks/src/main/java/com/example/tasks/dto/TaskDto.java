@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,6 +16,6 @@ public class TaskDto {
     private String toDo;
     private String status;
     private String username;
-    private String beginDate;
-    private String completedDate;
+    private LocalDate beginDate;
+    private LocalDate completedDate;
 }

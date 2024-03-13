@@ -6,8 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Date;
+import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,6 +22,6 @@ public class Task {
     @ManyToOne
     @Column(name = "user_id")
     private User user;
-    private Date beginDate;
-    private Date completedData;
+    private LocalDate beginDate;
+    private LocalDate completedData;
 }
