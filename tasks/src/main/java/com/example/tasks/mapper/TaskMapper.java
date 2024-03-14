@@ -16,7 +16,7 @@ public class TaskMapper {
                 .userId(taskDto.getUserId())
                 .toDo(taskDto.getToDo())
                 .beginDate(taskDto.getBeginDate())
-                .completedData(taskDto.getCompletedDate())
+                .completedDate(taskDto.getCompletedDate())
                 .build();
     }
 
@@ -24,7 +24,7 @@ public class TaskMapper {
         return TaskDto.builder()
                 .id(task.getId())
                 .beginDate(task.getBeginDate())
-                .completedDate(task.getCompletedData())
+                .completedDate(task.getCompletedDate())
                 .userId(task.getUserId())
                 .username(getUsername(task))
                 .toDo(task.getToDo())

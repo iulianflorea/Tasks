@@ -17,6 +17,7 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Enumerated(EnumType.STRING)
     private Status status;
     private String toDo;
     @Column(name = "user_id")
@@ -25,5 +26,5 @@ public class Task {
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
     private LocalDate beginDate;
-    private LocalDate completedData;
+    private LocalDate completedDate;
 }

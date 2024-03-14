@@ -1,5 +1,6 @@
 package com.example.tasks.dto;
 
+import com.example.tasks.entity.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +15,7 @@ public class TaskDto {
 
     private Long id;
     private String toDo;
-    private String status;
+    private Status status;
     private Long userId;
     private String username;
     private LocalDate beginDate;
