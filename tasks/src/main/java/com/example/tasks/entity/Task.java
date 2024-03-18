@@ -17,7 +17,7 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     private Status status;
     private String toDo;
     @Column(name = "user_id")
