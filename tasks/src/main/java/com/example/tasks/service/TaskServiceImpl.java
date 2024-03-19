@@ -7,6 +7,7 @@ import com.example.tasks.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.LinkedTransferQueue;
 
 @Service
 public class TaskServiceImpl implements TaskService {
@@ -27,31 +28,38 @@ public class TaskServiceImpl implements TaskService {
                 .completedDate(taskDto.getCompletedDate())
                 .status(taskDto.getStatus())
                 .build();
-        Task taskSaved = taskRepository.save(taskToBeSaved);
-        return taskMapper.toDto(taskSaved);
+        if(taskDto.getId() == null) {
+            Task taskSaved = taskRepository.save(taskToBeSaved);
+            return taskMapper.toDto(taskSaved);
+        } else {
+            update(taskDto);
+        }
+        return taskMapper.toDto(taskToBeSaved);
     }
-@Override
+
+    @Override
     public List<TaskDto> findAll() {
         List<Task> taskList = taskRepository.findAll();
         return taskMapper.toDtoList(taskList);
     }
+
     @Override
     public TaskDto findById(Long id) {
         Task task = taskRepository.findById(id).orElseThrow();
         return taskMapper.toDto(task);
     }
+
     @Override
     public TaskDto update(TaskDto taskDto) {
-        Task taskToBeUpdated = Task.builder()
-                .userId(taskDto.getUserId())
-                .toDo(taskDto.getToDo())
-                .beginDate(taskDto.getBeginDate())
-                .completedDate(taskDto.getCompletedDate())
-                .status(taskDto.getStatus())
-                .build();
+        Task taskToBeUpdated = taskRepository.findById(taskDto.getId()).orElseThrow();
+        taskToBeUpdated.setStatus(taskDto.getStatus());
+        taskToBeUpdated.setToDo(taskDto.getToDo());
+        taskToBeUpdated.setBeginDate(taskDto.getBeginDate());
+        taskToBeUpdated.setCompletedDate(taskDto.getCompletedDate());
         Task updatedTask = taskRepository.save(taskToBeUpdated);
         return taskMapper.toDto(updatedTask);
     }
+
     @Override
     public void delete(Long id) {
         Task task = taskRepository.findById(id).orElseThrow();

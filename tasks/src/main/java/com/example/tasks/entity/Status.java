@@ -2,6 +2,6 @@ package com.example.tasks.entity;
 
 public enum Status {
     PENDING,
-    InPROGRES,
+    InPROGRESS,
     COMPLETED
 }
