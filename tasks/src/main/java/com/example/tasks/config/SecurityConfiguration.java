@@ -10,8 +10,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
-
+@CrossOrigin(origins = "http://localhost:4200")
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -22,6 +23,7 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.cors();
         http
                 .csrf()
                 .disable()
