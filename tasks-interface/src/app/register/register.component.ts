@@ -47,7 +47,7 @@ export class RegisterComponent {
     this.httpClient.post( "/api/api/v1/auth/register", registerBody).subscribe((response) => {
       console.log(response);
       alert("You are registered now");
-      this.router.navigate(["/home"]);
+      this.router.navigate([""]);
     })
   }
 
