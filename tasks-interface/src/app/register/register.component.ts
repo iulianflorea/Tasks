@@ -36,15 +36,15 @@ export class RegisterComponent {
 
 
   register() {
-    const path = "http://localhost:8080";
+    // const path = "http://localhost:8080";
     var registerBody = {
-      id: this.id,
-      firstname: this.firstname,
-      lastname: this.lastname,
-      email: this.email,
-      password: this.password
+      id: this.registerForm.value.id,
+      firstname: this.registerForm.value.firstname,
+      lastname: this.registerForm.value.lastname,
+      email: this.registerForm.value.email,
+      password: this.registerForm.value.password
     }
-    this.httpClient.post( path + "/api/v1/auth/register", registerBody).subscribe((response) => {
+    this.httpClient.post( "/api/api/v1/auth/register", registerBody).subscribe((response) => {
       console.log(response);
       alert("You are registered now");
       this.router.navigate(["/home"]);
