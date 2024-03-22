@@ -36,7 +36,6 @@ export class RegisterComponent {
 
 
   register() {
-    // const path = "http://localhost:8080";
     var registerBody = {
       id: this.registerForm.value.id,
       firstname: this.registerForm.value.firstname,
