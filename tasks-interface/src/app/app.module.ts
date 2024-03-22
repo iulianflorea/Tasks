@@ -9,6 +9,8 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule} from "@angular/common/http";
+import { LoginComponent } from './login/login.component';
+import {MatButtonModule} from "@angular/material/button";
 
 
 
@@ -17,6 +19,7 @@ import { HttpClientModule} from "@angular/common/http";
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
 
   ],
   imports: [
@@ -29,6 +32,7 @@ import { HttpClientModule} from "@angular/common/http";
     BrowserAnimationsModule,
     RegisterComponent,
     HttpClientModule,
+    MatButtonModule,
 
 
   ],
