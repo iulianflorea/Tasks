@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './login/login.component';
 import {MatButtonModule} from "@angular/material/button";
+import { HeaderComponent } from './header/header.component';
 
 
 
@@ -20,6 +21,7 @@ import {MatButtonModule} from "@angular/material/button";
   declarations: [
     AppComponent,
     LoginComponent,
+    HeaderComponent,
 
   ],
   imports: [
