@@ -12,6 +12,8 @@ import { HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './login/login.component';
 import {MatButtonModule} from "@angular/material/button";
 import { HeaderComponent } from './header/header.component';
+import { AuthGuardComponent } from './auth-guard/auth-guard.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -22,6 +24,8 @@ import { HeaderComponent } from './header/header.component';
     AppComponent,
     LoginComponent,
     HeaderComponent,
+    AuthGuardComponent,
+    DashboardComponent,
 
   ],
   imports: [
