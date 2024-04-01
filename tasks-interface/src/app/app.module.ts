@@ -8,12 +8,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './login/login.component';
 import {MatButtonModule} from "@angular/material/button";
 import { HeaderComponent } from './header/header.component';
 import { AuthGuardComponent } from './auth-guard/auth-guard.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {AuthInterceptor} from "./header/auth-interceptor";
+import { TaskFormComponent } from './task-form/task-form.component';
 
 
 
@@ -26,6 +28,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HeaderComponent,
     AuthGuardComponent,
     DashboardComponent,
+    TaskFormComponent,
 
   ],
   imports: [
@@ -42,7 +45,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
