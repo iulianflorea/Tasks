@@ -1,0 +1,21 @@
+.task-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task {
+  color: white;
+  background-color: cadetblue;
+  height: 450px;
+  width: 250px;
+  margin: 20px;
+  border-radius: 20px;
+}
+
+.task-form {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

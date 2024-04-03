@@ -16,6 +16,7 @@ import { AuthGuardComponent } from './auth-guard/auth-guard.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {AuthInterceptor} from "./header/auth-interceptor";
 import { TaskFormComponent } from './task-form/task-form.component';
+import {MatSelectModule} from "@angular/material/select";
 
 
 
@@ -31,20 +32,21 @@ import { TaskFormComponent } from './task-form/task-form.component';
     TaskFormComponent,
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    BrowserAnimationsModule,
-    RegisterComponent,
-    HttpClientModule,
-    MatButtonModule,
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        BrowserAnimationsModule,
+        RegisterComponent,
+        HttpClientModule,
+        MatButtonModule,
+        MatSelectModule,
 
 
-  ],
+    ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
