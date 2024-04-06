@@ -17,6 +17,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {AuthInterceptor} from "./header/auth-interceptor";
 import { TaskFormComponent } from './task-form/task-form.component';
 import {MatSelectModule} from "@angular/material/select";
+import { TaskListComponent } from './task-list/task-list.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 
 
@@ -32,21 +35,23 @@ import {MatSelectModule} from "@angular/material/select";
     TaskFormComponent,
 
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        BrowserAnimationsModule,
-        RegisterComponent,
-        HttpClientModule,
-        MatButtonModule,
-        MatSelectModule,
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    BrowserAnimationsModule,
+    RegisterComponent,
+    HttpClientModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatTableModule,
+    MatPaginatorModule,
 
 
-    ],
+  ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],

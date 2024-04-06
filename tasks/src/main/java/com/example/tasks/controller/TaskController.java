@@ -27,7 +27,7 @@ public class TaskController {
         return taskService.findById(id);
     }
 
-    @GetMapping
+    @GetMapping("/findAll")
     public List<TaskDto> findAll() {
        return taskService.findAll();
     }

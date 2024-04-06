@@ -15,7 +15,6 @@ export class TaskFormComponent implements OnInit{
   toDo: any;
   status: any;
   userId: any;
-  username: any;
   beginDate: any;
   completedDate: any;
   userList: UserDto[] = [];
@@ -26,6 +25,7 @@ export class TaskFormComponent implements OnInit{
   taskForm: FormGroup = new FormGroup({
     toDo: new FormControl(),
     status: new FormControl(),
+    userId: new FormControl(),
     beginDate: new FormControl(),
     completedDate: new FormControl()
   })

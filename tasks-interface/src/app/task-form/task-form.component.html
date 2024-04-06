@@ -1,21 +1,22 @@
 <div class="task-container">
+
   <div class="task">
     <form [formGroup]="taskForm" (ngSubmit)="create()" class="task-form">
       <h1>Create Task</h1>
       <mat-form-field>
         <mat-label>To Do</mat-label>
-        <input matInput formControlName="toDo"/>
+        <input matInput [(ngModel)]="toDo" [ngModelOptions]="{standalone: true}" />
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Status</mat-label>
-        <input matInput formControlName="status"/>
+        <input matInput [(ngModel)]="status" [ngModelOptions]="{standalone: true}"/>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Username</mat-label>
-        <mat-select [(ngModel)]="username" [ngModelOptions]="{standalone: true}">
-          <mat-option *ngFor="let type of userList" [value]="type">
+        <mat-select [(ngModel)]="userId" [ngModelOptions]="{standalone: true}">
+          <mat-option *ngFor="let type of userList" [value]="type.id">
             {{type.firstname}}
           </mat-option>
         </mat-select>
