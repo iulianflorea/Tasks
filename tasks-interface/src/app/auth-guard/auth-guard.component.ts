@@ -1,7 +1,7 @@
 import {Component, Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree,} from "@angular/router";
 import {AuthenticationService} from "./AuthenticationService";
-import {Observable} from "rxjs";
+
 
 
 
@@ -26,6 +26,7 @@ export class AuthGuardComponent implements CanActivate{
       this.router.navigate(['/login']);
       return false;
     }
+
   }
 
 }

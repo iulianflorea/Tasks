@@ -3,6 +3,8 @@ package com.example.tasks.controller;
 import com.example.tasks.dto.TaskDto;
 import com.example.tasks.service.TaskService;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,6 +42,12 @@ public class TaskController {
     @DeleteMapping("/deleteById")
     public void delete(@RequestParam Long id) {
         taskService.delete(id);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<TaskDto>> search(@RequestParam String keyword) {
+        List<TaskDto> taskDtoList = taskService.search(keyword);
+        return new ResponseEntity<>(taskDtoList, HttpStatus.OK);
     }
 
 

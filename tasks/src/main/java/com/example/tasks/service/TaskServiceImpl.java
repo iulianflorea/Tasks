@@ -7,7 +7,6 @@ import com.example.tasks.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.concurrent.LinkedTransferQueue;
 
 @Service
 public class TaskServiceImpl implements TaskService {
@@ -64,6 +63,12 @@ public class TaskServiceImpl implements TaskService {
     public void delete(Long id) {
         Task task = taskRepository.findById(id).orElseThrow();
         taskRepository.delete(task);
+    }
+
+    @Override
+    public List<TaskDto> search(String keyword) {
+        List<Task> taskList = taskRepository.findByUserFirstnameOrToDoOrStatus(keyword, keyword, keyword);
+        return taskMapper.toDtoList(taskList);
     }
 
 }

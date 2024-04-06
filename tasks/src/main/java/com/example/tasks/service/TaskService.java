@@ -16,4 +16,6 @@ public interface TaskService {
     TaskDto update(TaskDto taskDto);
 
     void delete(Long id);
+
+    List<TaskDto> search(String keyword);
 }

@@ -24,6 +24,7 @@ public class TaskMapper {
         return TaskDto.builder()
                 .id(task.getId())
                 .beginDate(task.getBeginDate())
+                .status(task.getStatus())
                 .completedDate(task.getCompletedDate())
                 .userId(task.getUserId())
                 .username(getUsername(task))
@@ -33,7 +34,7 @@ public class TaskMapper {
 
     private String getUsername(Task task) {
         User user = task.getUser();
-        return (user != null) ? user.getUsername() : null;
+        return (user != null) ? user.getFirstname() : null;
     }
 
     public List<TaskDto> toDtoList(List<Task> taskList) {
