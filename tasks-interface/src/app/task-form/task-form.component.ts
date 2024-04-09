@@ -1,15 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
 import {UserDto} from "../dtos/userDto";
+import {TaskDto} from "../dtos/TaskDto";
 
 @Component({
   selector: 'app-task-form',
   templateUrl: './task-form.component.html',
   styleUrls: ['./task-form.component.css']
 })
-export class TaskFormComponent implements OnInit{
+export class TaskFormComponent implements OnInit {
 
   id: any;
   toDo: any;
@@ -19,7 +20,7 @@ export class TaskFormComponent implements OnInit{
   completedDate: any;
   userList: UserDto[] = [];
 
-  constructor(private httpClient: HttpClient, private router: Router) {
+  constructor(private httpClient: HttpClient, private router: Router, private route: ActivatedRoute) {
   }
 
   taskForm: FormGroup = new FormGroup({
@@ -32,7 +33,19 @@ export class TaskFormComponent implements OnInit{
 
   ngOnInit() {
     this.getUser();
-
+    console.log("id", this.route.snapshot.params['id'])
+    if (this.route.snapshot.params['id'] !== undefined) {
+      this.httpClient.get("/api/task/findById/" + this.route.snapshot.params['id']).subscribe((response: TaskDto) => {
+        console.log(response);
+        // @ts-ignore
+        this.id = response.id;
+        this.toDo = response.toDo;
+        this.status = response.status;
+        this.userId = response.userId;
+        this.beginDate = response.beginDate;
+        this.completedDate = response.completedDate;
+      })
+    }
   }
 
   create() {
@@ -44,7 +57,7 @@ export class TaskFormComponent implements OnInit{
       beginDate: this.beginDate,
       completedDate: this.completedDate
     }
-    this.httpClient.post("/api/task/create" , task).subscribe((response) => {
+    this.httpClient.post("/api/task/create", task).subscribe((response) => {
       console.log(response);
       alert("Task was created");
       this.router.navigate(["/task-list"]);

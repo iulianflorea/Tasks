@@ -22,7 +22,7 @@ import {NgForOf} from "@angular/common";
 })
 export class TaskListComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['id', 'toDo', 'status', 'user', 'beginDate', 'completedDate'];
+  displayedColumns: string[] = ['id', 'toDo', 'status', 'user', 'beginDate', 'completedDate', 'update', 'delete'];
   dataSource: TaskDto[] = [];
   dataSource2 = new MatTableDataSource<TaskDto>(this.dataSource);
   keyword: string = '';
@@ -61,6 +61,24 @@ export class TaskListComponent implements AfterViewInit {
       })
     }
     this.searchTask(this.keyword).subscribe(data =>this.searchResult = data);
+  }
+
+  delete(taskDto: TaskDto) {
+    const id = taskDto.id;
+    if (confirm("Sure you want to delete it?")) {
+      this.httpClient.delete("/api/task/delete/" + id).subscribe((response) => {
+        console.log(response);
+        alert(" The intervention was deleted");
+        this.ngOnInit();
+      })
+    }
+  }
+
+  update(taskDto: TaskDto) {
+
+    this.httpClient.put("/api/task/update", taskDto).subscribe((response) =>{
+      console.log(response);
+    })
   }
 
 
