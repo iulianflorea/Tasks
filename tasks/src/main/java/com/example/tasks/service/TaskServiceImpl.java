@@ -53,6 +53,7 @@ public class TaskServiceImpl implements TaskService {
         Task taskToBeUpdated = taskRepository.findById(taskDto.getId()).orElseThrow();
         taskToBeUpdated.setStatus(taskDto.getStatus());
         taskToBeUpdated.setToDo(taskDto.getToDo());
+        taskToBeUpdated.setUserId(taskDto.getUserId());
         taskToBeUpdated.setBeginDate(taskDto.getBeginDate());
         taskToBeUpdated.setCompletedDate(taskDto.getCompletedDate());
         Task updatedTask = taskRepository.save(taskToBeUpdated);
@@ -67,7 +68,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<TaskDto> search(String keyword) {
-        List<Task> taskList = taskRepository.findByUserFirstnameOrToDoOrStatus(keyword, keyword, keyword);
+        List<Task> taskList = taskRepository.findByUserFirstnameOrToDo(keyword, keyword);
         return taskMapper.toDtoList(taskList);
     }
 

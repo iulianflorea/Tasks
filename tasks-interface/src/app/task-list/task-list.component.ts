@@ -75,7 +75,6 @@ export class TaskListComponent implements AfterViewInit {
   }
 
   update(taskDto: TaskDto) {
-
     this.httpClient.put("/api/task/update", taskDto).subscribe((response) =>{
       console.log(response);
     })
