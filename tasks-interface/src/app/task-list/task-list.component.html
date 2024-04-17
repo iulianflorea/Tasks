@@ -1,18 +1,20 @@
 <div>
   <div class="search">
+    <form (ngSubmit)="search()">
     <mat-form-field>
-      <mat-label>Enter serial number</mat-label>
+      <mat-label>Enter keyword</mat-label>
       <input matInput [(ngModel)]="keyword" [ngModelOptions]="{standalone: true}"/>
     </mat-form-field>
-    <button mat-raised-button (click)="search()" type="submit" color="primary">Search</button>
+    <button mat-raised-button type="submit" color="primary">Search</button>
+    </form>
     <div *ngFor="let result of searchResult">
 
     </div>
   </div>
 </div>
+
+
 <div class="containerList">
-
-
   <button mat-mini-fab color="accent" routerLink="/task"
           aria-label="Example icon button with a plus one icon">
 
