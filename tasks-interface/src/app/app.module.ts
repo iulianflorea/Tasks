@@ -20,6 +20,7 @@ import {MatSelectModule} from "@angular/material/select";
 import { TaskListComponent } from './task-list/task-list.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatIconModule} from "@angular/material/icon";
 
 
 
@@ -35,23 +36,24 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     TaskFormComponent,
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    BrowserAnimationsModule,
-    RegisterComponent,
-    HttpClientModule,
-    MatButtonModule,
-    MatSelectModule,
-    MatTableModule,
-    MatPaginatorModule,
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        BrowserAnimationsModule,
+        RegisterComponent,
+        HttpClientModule,
+        MatButtonModule,
+        MatSelectModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatIconModule,
 
 
-  ],
+    ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],

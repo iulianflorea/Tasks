@@ -18,4 +18,6 @@ public interface TaskService {
     void delete(Long id);
 
     List<TaskDto> search(String keyword);
+
+    List<TaskDto> getTasksLoggedUser(String jwtToken);
 }

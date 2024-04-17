@@ -49,6 +49,10 @@ public class TaskController {
         List<TaskDto> taskDtoList = taskService.search(keyword);
         return new ResponseEntity<>(taskDtoList, HttpStatus.OK);
     }
+    @GetMapping("/userTasks/{token}")
+    public List<TaskDto> getTasksLoggedUser(@PathVariable String token) {
+        return taskService.getTasksLoggedUser(token);
+    }
 
 
 }
