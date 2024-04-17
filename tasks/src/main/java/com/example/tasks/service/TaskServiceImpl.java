@@ -5,9 +5,12 @@ import com.example.tasks.entity.Status;
 import com.example.tasks.entity.Task;
 import com.example.tasks.mapper.TaskMapper;
 import com.example.tasks.repository.TaskRepository;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import org.springframework.stereotype.Service;
 
-import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,7 +32,7 @@ public class TaskServiceImpl implements TaskService {
                 .completedDate(taskDto.getCompletedDate())
                 .status(taskDto.getStatus())
                 .build();
-        if(taskDto.getId() == null) {
+        if (taskDto.getId() == null) {
             Task taskSaved = taskRepository.save(taskToBeSaved);
             return taskMapper.toDto(taskSaved);
         } else {
@@ -49,6 +52,7 @@ public class TaskServiceImpl implements TaskService {
         Task task = taskRepository.findById(id).orElseThrow();
         return taskMapper.toDto(task);
     }
+
 
     @Override
     public TaskDto update(TaskDto taskDto) {
@@ -70,8 +74,35 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<TaskDto> search(String keyword) {
-        List<Task> taskList = taskRepository.findAllByUserFirstnameOrToDo(keyword, keyword);
+        List<Task> taskList = taskRepository.findAllByUserFirstnameOrToDoOrStatus(keyword, keyword, Status.valueOf(keyword));
         return taskMapper.toDtoList(taskList);
+    }
+
+    @Override
+    public List<TaskDto> getTasksLoggedUser(String jwtToken) {
+        String userId = parseJWT(jwtToken);
+        List<Task> allTasks = taskRepository.findAll();
+        List<Task> userTasks = new ArrayList<>();
+        for (Task task : allTasks) {
+            if (task.getUser().getUsername().equals(userId)) {
+                userTasks.add(task);
+            }
+        }
+        return taskMapper.toDtoList(userTasks);
+    }
+
+    private String parseJWT(String jwtToken) {
+        String secretKey = "MzBxJaeWRwNubD+ZS4/zVgK9GPqH8A3Nns2gXmPvMUfAsqtsowARlphR8Z4FwYoKPDl0Sk/ahgauCJGu7bGz4Q==";
+        try {
+            Claims claims = Jwts.parser()
+                    .setSigningKey(secretKey)
+                    .parseClaimsJws(jwtToken)
+                    .getBody();
+            String userId = claims.getSubject();
+            return userId;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
 }
