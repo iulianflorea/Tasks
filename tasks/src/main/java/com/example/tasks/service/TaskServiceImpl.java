@@ -74,6 +74,9 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<TaskDto> search(String keyword) {
+        if(keyword != null) {
+
+        }
         List<Task> taskList = taskRepository.findAllByUserFirstnameOrToDoOrStatus(keyword, keyword, Status.valueOf(keyword));
         return taskMapper.toDtoList(taskList);
     }

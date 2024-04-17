@@ -1,14 +1,14 @@
 <div>
-  <div class="search">
-    <mat-form-field>
-      <mat-label>Enter serial number</mat-label>
-      <input matInput [(ngModel)]="keyword" [ngModelOptions]="{standalone: true}"/>
-    </mat-form-field>
-    <button mat-raised-button (click)="search()" type="submit" color="primary">Search</button>
-    <div *ngFor="let result of searchResult">
-
+  <form (submit)="search()">
+    <div class="search">
+      <mat-form-field>
+        <mat-label>Search</mat-label>
+        <input matInput [(ngModel)]="keyword" [ngModelOptions]="{standalone: true}"/>
+      </mat-form-field>
+      <div *ngFor="let result of searchResult">
+      </div>
     </div>
-  </div>
+  </form>
 </div>
 <div class="containerList">
 
@@ -73,7 +73,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20, 30]"
+    <mat-paginator [pageSizeOptions]="[10, 20, 30]"
                    showFirstLastButtons
                    aria-label="Select page of periodic elements">
     </mat-paginator>
