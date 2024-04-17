@@ -1,6 +1,7 @@
 package com.example.tasks.service;
 
 import com.example.tasks.dto.TaskDto;
+import com.example.tasks.entity.Status;
 import com.example.tasks.entity.Task;
 import com.example.tasks.mapper.TaskMapper;
 import com.example.tasks.repository.TaskRepository;
@@ -8,6 +9,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,7 +74,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<TaskDto> search(String keyword) {
-        List<Task> taskList = taskRepository.findAllByUserFirstnameOrToDo(keyword, keyword);
+        List<Task> taskList = taskRepository.findAllByUserFirstnameOrToDoOrStatus(keyword, keyword, Status.valueOf(keyword));
         return taskMapper.toDtoList(taskList);
     }
 
