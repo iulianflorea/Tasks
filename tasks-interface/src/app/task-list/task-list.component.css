@@ -4,7 +4,7 @@ table {
 
 .mat-mdc-form-field {
   font-size: 14px;
-  width: 100%;
+  width: 70%;
 }
 
 td, th {
@@ -12,7 +12,19 @@ td, th {
 }
 
 .search {
-  width: 100%;
+  width: 50%;
   display: flex;
   align-items: center;
+}
+
+.container {
+
+}
+
+.container-list {
+width: 100%;
+}
+
+.add-button {
+
 }
