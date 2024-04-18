@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -74,11 +75,16 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<TaskDto> search(String keyword) {
-        if(keyword != null) {
-
+        try {
+            List<Task> taskList = taskRepository.findAllByStatus(Status.valueOf(keyword));
+            return taskMapper.toDtoList(taskList);
+        } catch (IllegalArgumentException e) {
+            List<Task> taskList = taskRepository.findAllByUserFirstnameOrToDo(keyword, keyword);
+            return taskMapper.toDtoList(taskList);
+        }finally {
+            List<Task> taskList = taskRepository.findAllByBeginDateOrCompletedDate(LocalDate.parse(keyword), LocalDate.parse(keyword));
+            return taskMapper.toDtoList(taskList);
         }
-        List<Task> taskList = taskRepository.findAllByUserFirstnameOrToDoOrStatus(keyword, keyword, Status.valueOf(keyword));
-        return taskMapper.toDtoList(taskList);
     }
 
     @Override

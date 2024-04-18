@@ -13,7 +13,10 @@ import java.util.List;
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
-    List<Task> findAllByUserFirstnameOrToDoOrStatus(String keyword, String toDo, Status status);
+    List<Task> findAllByStatus(Status status);
 
+    List<Task> findAllByUserFirstnameOrToDo(String username, String toDo);
+
+    List<Task> findAllByBeginDateOrCompletedDate(LocalDate beginDate, LocalDate completedDate);
 
 }
