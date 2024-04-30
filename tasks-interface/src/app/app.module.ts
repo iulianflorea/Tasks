@@ -20,6 +20,7 @@ import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatIconModule} from "@angular/material/icon";
 import {MatDatepickerModule} from "@angular/material/datepicker";
+import {NativeDateAdapter} from "@angular/material/core";
 
 
 @NgModule({
@@ -47,13 +48,13 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
     MatTableModule,
     MatPaginatorModule,
     MatIconModule,
-    MatDatepickerModule
-
+    MatDatepickerModule,
 
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {

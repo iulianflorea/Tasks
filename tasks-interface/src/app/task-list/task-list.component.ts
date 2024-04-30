@@ -13,13 +13,15 @@ import {Observable} from "rxjs";
 import {MatButtonModule} from "@angular/material/button";
 import {NgForOf} from "@angular/common";
 import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule, NativeDateAdapter, NativeDateModule} from "@angular/material/core";
 
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css'],
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, FormsModule, MatIconModule, MatButtonModule, RouterLink, NgForOf, MatDatepickerModule],
+  providers: [MatNativeDateModule, NativeDateAdapter],
+  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, FormsModule, MatIconModule, MatButtonModule, RouterLink, NgForOf, MatDatepickerModule, MatNativeDateModule],
 })
 export class TaskListComponent implements AfterViewInit {
 
@@ -35,6 +37,14 @@ export class TaskListComponent implements AfterViewInit {
   constructor(private httpClient: HttpClient, private router: Router) {
 
   }
+
+  selectedDate = new Date();
+
+  saveDate() {
+    const savedDate = this.selectedDate.toISOString().slice(0, 10); // Formatare ca string YYYY-MM-DD
+    console.log('Data salvată:', savedDate);
+  }
+
 
   ngAfterViewInit() {
     this.dataSource2.paginator = this.paginator;
