@@ -1,32 +1,32 @@
-<div>
-  <form (submit)="search()">
-    <div class="search">
+<div class="search">
+  <div >
+    <form (submit)="search()">
       <mat-form-field>
         <mat-label>Search</mat-label>
         <input matInput [(ngModel)]="keyword" [ngModelOptions]="{standalone: true}"/>
       </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Choose a date</mat-label>
-        <input matInput [matDatepicker]="picker">
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-
       <div *ngFor="let result of searchResult">
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
+  <div class="date-picker">
+    <mat-form-field>
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
 </div>
 
 <div class="container">
   <div class="container-list">
     <div class="add-button">
-    <button mat-mini-fab color="accent" routerLink="/task"
-            aria-label="Example icon button with a plus one icon">
-      <mat-icon>plus_one</mat-icon>
-    </button>
+      <button mat-mini-fab color="accent" routerLink="/task"
+              aria-label="Example icon button with a plus one icon">
+        <mat-icon>plus_one</mat-icon>
+      </button>
     </div>
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource2">

@@ -12,14 +12,17 @@ import {MatIconModule} from "@angular/material/icon";
 import {Observable} from "rxjs";
 import {MatButtonModule} from "@angular/material/button";
 import {NgForOf} from "@angular/common";
+import {MatNativeDateModule} from '@angular/material/core';
 import {MatDatepickerModule} from "@angular/material/datepicker";
+
 
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css'],
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, FormsModule, MatIconModule, MatButtonModule, RouterLink, NgForOf, MatDatepickerModule],
+  providers: [MatNativeDateModule],
+  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, FormsModule, MatIconModule, MatButtonModule, RouterLink, NgForOf, MatDatepickerModule, MatNativeDateModule],
 })
 export class TaskListComponent implements AfterViewInit {
 
@@ -28,11 +31,12 @@ export class TaskListComponent implements AfterViewInit {
   dataSource2 = new MatTableDataSource<TaskDto>(this.dataSource);
   keyword: string = '';
   searchResult: TaskDto[] = [];
+  picker: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private httpClient: HttpClient, private router: Router) {
+  constructor(private httpClient: HttpClient) {
 
   }
 

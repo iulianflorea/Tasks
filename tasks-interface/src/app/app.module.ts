@@ -47,7 +47,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
     MatTableModule,
     MatPaginatorModule,
     MatIconModule,
-    MatDatepickerModule
+    MatDatepickerModule,
 
 
   ],
