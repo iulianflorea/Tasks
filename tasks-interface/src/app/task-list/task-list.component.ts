@@ -12,8 +12,9 @@ import {MatIconModule} from "@angular/material/icon";
 import {Observable} from "rxjs";
 import {MatButtonModule} from "@angular/material/button";
 import {NgForOf} from "@angular/common";
-import {MatNativeDateModule} from '@angular/material/core';
+
 import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule, NativeDateAdapter} from "@angular/material/core";
 
 
 @Component({
@@ -21,7 +22,8 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css'],
   standalone: true,
-  providers: [MatNativeDateModule],
+  providers: [MatNativeDateModule, NativeDateAdapter],
+
   imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, FormsModule, MatIconModule, MatButtonModule, RouterLink, NgForOf, MatDatepickerModule, MatNativeDateModule],
 })
 export class TaskListComponent implements AfterViewInit {
@@ -31,7 +33,6 @@ export class TaskListComponent implements AfterViewInit {
   dataSource2 = new MatTableDataSource<TaskDto>(this.dataSource);
   keyword: string = '';
   searchResult: TaskDto[] = [];
-  picker: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -39,6 +40,13 @@ export class TaskListComponent implements AfterViewInit {
   constructor(private httpClient: HttpClient) {
 
   }
+
+  selectedDate = new Date();
+  saveDate() {
+    const savedDate = this.selectedDate.toISOString().slice(0, 10); // Formatare ca string YYYY-MM-DD
+    console.log('Data salvată:', savedDate);
+  }
+
 
   ngAfterViewInit() {
     this.dataSource2.paginator = this.paginator;
@@ -84,6 +92,5 @@ export class TaskListComponent implements AfterViewInit {
       console.log(response);
     })
   }
-
 
 }
