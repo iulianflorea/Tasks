@@ -28,3 +28,8 @@ width: 100%;
 .add-button {
 
 }
+
+.example-button-row {
+  display: table-cell;
+  max-width: 600px;
+}

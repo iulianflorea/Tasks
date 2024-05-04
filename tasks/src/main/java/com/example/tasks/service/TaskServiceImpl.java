@@ -80,6 +80,9 @@ public class TaskServiceImpl implements TaskService {
         } catch (IllegalArgumentException e) {
             List<Task> taskList = taskRepository.findAllByUserFirstnameOrToDo(keyword, keyword);
             return taskMapper.toDtoList(taskList);
+        } finally {
+            List<Task> taskList = taskRepository.findAllByBeginDateOrCompletedDate(LocalDate.parse(keyword), LocalDate.parse(keyword));
+            return taskMapper.toDtoList(taskList);
         }
     }
 

@@ -61,14 +61,14 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "proxyConfig": "src/proxy.conf.json",
-            "browserTarget": "tasks-interface:build:production"
+            "buildTarget": "tasks-interface:build:production"
           },
           "configurations": {
             "production": {
-              "browserTarget": "tasks-interface:build:production"
+              "buildTarget": "tasks-interface:build:production"
             },
             "development": {
-              "browserTarget": "tasks-interface:build:development"
+              "buildTarget": "tasks-interface:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "tasks-interface:build"
+            "buildTarget": "tasks-interface:build"
           }
         },
         "test": {

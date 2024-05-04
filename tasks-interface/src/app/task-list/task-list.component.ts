@@ -12,9 +12,9 @@ import {MatIconModule} from "@angular/material/icon";
 import {Observable} from "rxjs";
 import {MatButtonModule} from "@angular/material/button";
 import {NgForOf} from "@angular/common";
-import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule, NativeDateAdapter} from "@angular/material/core";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 
 @Component({
@@ -22,10 +22,9 @@ import {MatNativeDateModule, NativeDateAdapter} from "@angular/material/core";
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css'],
   standalone: true,
-  providers: [MatNativeDateModule, NativeDateAdapter,
-    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } }],
+  providers: [MatNativeDateModule, NativeDateAdapter],
 
-  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, FormsModule, MatIconModule, MatButtonModule, RouterLink, NgForOf, MatDatepickerModule, MatNativeDateModule, MatMomentDateModule],
+  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, FormsModule, MatIconModule, MatButtonModule, RouterLink, NgForOf, MatDatepickerModule, MatNativeDateModule, MatButtonToggleModule],
 })
 export class TaskListComponent implements AfterViewInit {
 
@@ -44,8 +43,10 @@ export class TaskListComponent implements AfterViewInit {
 
   selectedDate = new Date();
   saveDate() {
-    const savedDate = this.selectedDate.toISOString().slice(0, 10); // Formatare ca string YYYY-MM-DD
+    this.selectedDate.setMinutes(this.selectedDate.getMinutes() - this.selectedDate.getTimezoneOffset());
+    const savedDate = this.selectedDate.toISOString().substring(0, 10) // Formatare ca string YYYY-MM-DD
     console.log('Data salvată:', savedDate);
+    this.keyword = this.selectedDate.toISOString().slice(0, 10);
   }
 
 

@@ -13,7 +13,10 @@
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
-      <button (click)="saveDate()">Test</button>
+      <div class="example-button-row">
+        <button mat-flat-button (click)="saveDate()">Search</button>
+      </div>
+
       <div *ngFor="let result of searchResult">
       </div>
 
