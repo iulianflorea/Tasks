@@ -12,7 +12,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {Observable} from "rxjs";
 import {MatButtonModule} from "@angular/material/button";
 import {NgForOf} from "@angular/common";
-
+import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule, NativeDateAdapter} from "@angular/material/core";
 
@@ -22,9 +22,10 @@ import {MatNativeDateModule, NativeDateAdapter} from "@angular/material/core";
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css'],
   standalone: true,
-  providers: [MatNativeDateModule, NativeDateAdapter],
+  providers: [MatNativeDateModule, NativeDateAdapter,
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } }],
 
-  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, FormsModule, MatIconModule, MatButtonModule, RouterLink, NgForOf, MatDatepickerModule, MatNativeDateModule],
+  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, FormsModule, MatIconModule, MatButtonModule, RouterLink, NgForOf, MatDatepickerModule, MatNativeDateModule, MatMomentDateModule],
 })
 export class TaskListComponent implements AfterViewInit {
 
