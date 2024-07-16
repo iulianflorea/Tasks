@@ -46,7 +46,9 @@ export class TaskListComponent implements AfterViewInit {
     this.selectedDate.setMinutes(this.selectedDate.getMinutes() - this.selectedDate.getTimezoneOffset());
     const savedDate = this.selectedDate.toISOString().substring(0, 10) // Formatare ca string YYYY-MM-DD
     console.log('Data salvată:', savedDate);
-    this.keyword = this.selectedDate.toISOString().slice(0, 10);
+    if(this.keyword === "") {
+      this.keyword = this.selectedDate.toISOString().slice(0, 10);
+    }
   }
 
 
