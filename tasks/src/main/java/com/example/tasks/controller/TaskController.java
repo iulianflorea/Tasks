@@ -1,6 +1,7 @@
 package com.example.tasks.controller;
 
 import com.example.tasks.dto.TaskDto;
+import com.example.tasks.entity.Task;
 import com.example.tasks.service.TaskService;
 
 import org.springframework.http.HttpStatus;

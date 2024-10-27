@@ -1,14 +1,26 @@
-<div>
-  <form (submit)="search()">
-    <div class="search">
+<div class="search">
+  <div>
+    <form (submit)="search()" class="form-row">
       <mat-form-field>
         <mat-label>Search</mat-label>
         <input matInput [(ngModel)]="keyword" [ngModelOptions]="{standalone: true}"/>
       </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" name="selectedDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker></mat-datepicker>
+      </mat-form-field>
+
+      <button mat-flat-button (click)="saveDate()">Search</button>
+
       <div *ngFor="let result of searchResult">
       </div>
-    </div>
-  </form>
+
+    </form>
+  </div>
 </div>
 <div class="containerList">
 

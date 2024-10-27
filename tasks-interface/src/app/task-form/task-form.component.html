@@ -22,17 +22,29 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Begin</mat-label>
-        <input matInput placeholder="YYYY-MM-DD" name="beginDate" [(ngModel)]="beginDate" [ngModelOptions]="{standalone: true}">
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Begin Date</mat-label>
+        <input matInput [matDatepicker]="picker"  [(ngModel)]="selectedDate" [ngModelOptions]="{standalone: true}" name="selectedDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker></mat-datepicker>
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Completed</mat-label>
-        <input matInput placeholder="YYYY-MM-DD" name="completedDate" [(ngModel)]="completedDate" [ngModelOptions]="{standalone: true}">
+<!--      <mat-form-field appearance="fill">-->
+<!--        <mat-label>Begin</mat-label>-->
+<!--        <input matInput placeholder="YYYY-MM-DD" name="beginDate" [(ngModel)]="beginDate" [ngModelOptions]="{standalone: true}">-->
+<!--      </mat-form-field>-->
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Completed Date</mat-label>
+        <input matInput [matDatepicker]="picker2"  [(ngModel)]="selectedDate2" [ngModelOptions]="{standalone: true}" name="selectedDate2">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker2></mat-datepicker>
       </mat-form-field>
 
-      <button mat-raised-button type="submit" color="primary">Create</button>
+      <button mat-raised-button (click)="saveDate12()" type="submit" color="primary">Create</button>
     </form>
   </div>
 </div>

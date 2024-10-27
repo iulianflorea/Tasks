@@ -2,6 +2,7 @@ package com.example.tasks.service;
 
 
 import com.example.tasks.dto.TaskDto;
+import com.example.tasks.entity.Task;
 
 import java.util.List;
 

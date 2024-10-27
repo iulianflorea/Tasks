@@ -28,8 +28,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
     LoginComponent,
     HeaderComponent,
     AuthGuardComponent,
-    DashboardComponent,
-    TaskFormComponent,
+
 
   ],
   imports: [

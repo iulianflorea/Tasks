@@ -7,9 +7,16 @@ import com.example.tasks.mapper.TaskMapper;
 import com.example.tasks.repository.TaskRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +24,8 @@ import java.util.List;
 public class TaskServiceImpl implements TaskService {
     private final TaskRepository taskRepository;
     private final TaskMapper taskMapper;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public TaskServiceImpl(TaskRepository taskRepository, TaskMapper taskMapper) {
         this.taskRepository = taskRepository;
@@ -74,18 +83,22 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<TaskDto> search(String keyword) {
-        try {
-            List<Task> taskList = taskRepository.findAllByBeginDateOrCompletedDate(LocalDate.parse(keyword), LocalDate.parse(keyword));
-            return taskMapper.toDtoList(taskList);
 
-        } catch (IllegalArgumentException e) {
-            List<Task> taskList = taskRepository.findAllByUserFirstnameOrToDo(keyword, keyword);
-            return taskMapper.toDtoList(taskList);
-        } finally {
-            List<Task> taskList = taskRepository.findAllByStatus(Status.valueOf(keyword));
-            return taskMapper.toDtoList(taskList);
+        LocalDate beginDate = null;
+        LocalDate completedDate = null;
+
+        // Încearcă să parsezi keyword ca LocalDate
+        try {
+            beginDate = LocalDate.parse(keyword);
+            completedDate = beginDate;
+        } catch (DateTimeParseException e) {
+            // Dacă nu poate fi convertit în LocalDate, lăsăm valorile ca null
         }
+
+        List<Task> taskList = taskRepository.searchTasks(keyword, beginDate, completedDate);
+        return taskMapper.toDtoList(taskList);
     }
+
 
     @Override
     public List<TaskDto> getTasksLoggedUser(String jwtToken) {

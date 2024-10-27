@@ -13,6 +13,14 @@ td, th {
 
 .search {
   width: 100%;
+}
+
+.form-row {
   display: flex;
+  gap: 16px; /* Spatiu între câmpuri */
   align-items: center;
+}
+
+mat-form-field {
+  flex: 1; /* Ajustează lățimea câmpurilor după nevoi */
 }

@@ -1,14 +1,30 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {ActivatedRoute, Router} from "@angular/router";
-import {FormControl, FormGroup} from "@angular/forms";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {UserDto} from "../dtos/userDto";
 import {TaskDto} from "../dtos/TaskDto";
+import {MatNativeDateModule, MatOptionModule, NativeDateAdapter} from "@angular/material/core";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatTableModule} from "@angular/material/table";
+import {MatSortModule} from "@angular/material/sort";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import {NgForOf} from "@angular/common";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatSelectModule} from "@angular/material/select";
 
 @Component({
   selector: 'app-task-form',
   templateUrl: './task-form.component.html',
-  styleUrls: ['./task-form.component.css']
+  styleUrls: ['./task-form.component.css'],
+  standalone: true,
+  providers: [MatNativeDateModule, NativeDateAdapter],
+
+  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, FormsModule, MatIconModule, MatButtonModule, RouterLink, NgForOf, MatDatepickerModule, MatNativeDateModule, MatButtonToggleModule, MatOptionModule, MatSelectModule, ReactiveFormsModule],
 })
 export class TaskFormComponent implements OnInit {
 
@@ -48,14 +64,38 @@ export class TaskFormComponent implements OnInit {
     }
   }
 
+  selectedDate: Date = new Date();
+  selectedDate2: Date = new Date();
+
+  saveDate() {
+    this.selectedDate.setMinutes(this.selectedDate.getMinutes() - this.selectedDate.getTimezoneOffset());
+    const savedDate = this.selectedDate.toISOString().substring(0, 10) // Formatare ca string YYYY-MM-DD
+    this.beginDate = savedDate;
+    console.log('Data salvată:', savedDate);
+
+  }
+
+  saveDate2() {
+    this.selectedDate2.setMinutes(this.selectedDate2.getMinutes() - this.selectedDate2.getTimezoneOffset());
+    const savedDate = this.selectedDate2.toISOString().substring(0, 10) // Formatare ca string YYYY-MM-DD
+    this.completedDate = savedDate;
+    console.log('Data salvată:', savedDate);
+
+  }
+
+  saveDate12() {
+    this.saveDate();
+    this.saveDate2();
+  }
+
   create() {
     var task = {
       id: this.id,
       toDo: this.toDo,
-      status: this.status,
+      status: this.status.toUpperCase(),
       userId: this.userId,
-      beginDate: this.beginDate,
-      completedDate: this.completedDate
+      beginDate: this.selectedDate,
+      completedDate: this.selectedDate2
     }
     this.httpClient.post("/api/task/create", task).subscribe((response) => {
       console.log(response);

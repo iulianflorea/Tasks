@@ -1,16 +1,29 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {TaskDto} from "../dtos/TaskDto";
-import {MatTableDataSource} from "@angular/material/table";
-import {MatPaginator} from "@angular/material/paginator";
-import {MatSort} from "@angular/material/sort";
+import {MatTableDataSource, MatTableModule} from "@angular/material/table";
+import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
+import {MatSort, MatSortModule} from "@angular/material/sort";
 import {HttpClient} from "@angular/common/http";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {Observable} from "rxjs";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule, NativeDateAdapter} from "@angular/material/core";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {FormsModule} from "@angular/forms";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import {NgForOf} from "@angular/common";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  providers: [MatNativeDateModule, NativeDateAdapter],
+
+  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, FormsModule, MatIconModule, MatButtonModule, RouterLink, NgForOf, MatDatepickerModule, MatNativeDateModule, MatButtonToggleModule],
+  standalone: true
 })
 export class DashboardComponent implements AfterViewInit{
 
@@ -24,6 +37,20 @@ export class DashboardComponent implements AfterViewInit{
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private httpClient: HttpClient, private router: Router) {
+
+  }
+
+  selectedDate: Date = new Date();
+  saveDate() {
+    this.selectedDate.setMinutes(this.selectedDate.getMinutes() - this.selectedDate.getTimezoneOffset());
+    const savedDate = this.selectedDate.toISOString().substring(0, 10) // Formatare ca string YYYY-MM-DD
+    console.log('Data salvată:', savedDate);
+
+    // this.keyword = this.selectedDate.toISOString().slice(0, 10);
+
+    if(this.keyword === "") {
+      this.keyword = this.selectedDate.toISOString().slice(0, 10);
+    }
 
   }
 
