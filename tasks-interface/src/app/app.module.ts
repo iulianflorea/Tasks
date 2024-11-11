@@ -20,6 +20,7 @@ import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatIconModule} from "@angular/material/icon";
 import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
     MatPaginatorModule,
     MatIconModule,
     MatDatepickerModule,
+    MatDialogModule,
 
 
   ],

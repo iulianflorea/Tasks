@@ -7,6 +7,7 @@ import {AuthGuardComponent} from "./auth-guard/auth-guard.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {TaskFormComponent} from "./task-form/task-form.component";
 import {TaskListComponent} from "./task-list/task-list.component";
+import {PopUpTaskComponent} from "./pop-up-task/pop-up-task.component";
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: "login", component: LoginComponent},
   {path: "task" , component: TaskFormComponent},
   {path: "task/:id" , component: TaskFormComponent},
+  {path: "pop/:id" , component: PopUpTaskComponent},
   {path: "task-list", component: TaskListComponent},
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardComponent]},
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },

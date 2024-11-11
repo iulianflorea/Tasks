@@ -31,11 +31,6 @@
         <mat-datepicker touchUi #picker></mat-datepicker>
       </mat-form-field>
 
-<!--      <mat-form-field appearance="fill">-->
-<!--        <mat-label>Begin</mat-label>-->
-<!--        <input matInput placeholder="YYYY-MM-DD" name="beginDate" [(ngModel)]="beginDate" [ngModelOptions]="{standalone: true}">-->
-<!--      </mat-form-field>-->
-
       <mat-form-field class="example-full-width">
         <mat-label>Completed Date</mat-label>
         <input matInput [matDatepicker]="picker2"  [(ngModel)]="selectedDate2" [ngModelOptions]="{standalone: true}" name="selectedDate2">
