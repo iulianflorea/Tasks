@@ -66,7 +66,6 @@
   </style>
 </head>
 <body>
-
 <!-- Fundal și container pentru modala -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal-content">
@@ -80,6 +79,12 @@
       Begin Date: {{item.beginDate}}<br>
       Completed Date: {{item.completedDate}}<br>
 
+        <a routerLink="/task/{{item.id}}">
+          <button mat-raised-button>Edit</button>
+        </a>
+
+      <button mat-fab color="warn" aria-label="Example icon button with a delete icon"
+              (click)="delete(item)">Delete</button>
     </div>
   </div>
 </div>

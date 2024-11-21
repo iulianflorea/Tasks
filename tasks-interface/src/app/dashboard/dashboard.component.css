@@ -1,26 +1,28 @@
-table {
-  width: 100%;
-}
+/*table {*/
+/*  width: 100%;*/
+/*}*/
 
-.mat-mdc-form-field {
-  font-size: 14px;
-  width: 100%;
-}
+/*.mat-mdc-form-field {*/
+/*  font-size: 14px;*/
+/*  width: 100%;*/
+/*}*/
 
-td, th {
-  width: 25%;
-}
+/*td, th {*/
+/*  width: 25%;*/
+/*}*/
 
-.search {
-  width: 100%;
-}
+/*.search {*/
+/*  width: 100%;*/
+/*}*/
 
-.form-row {
-  display: flex;
-  gap: 16px; /* Spatiu între câmpuri */
-  align-items: center;
-}
+/*.form-row {*/
+/*  display: flex;*/
+/*  gap: 16px; !* Spatiu între câmpuri *!*/
+/*  align-items: center;*/
+/*}*/
 
-mat-form-field {
-  flex: 1; /* Ajustează lățimea câmpurilor după nevoi */
-}
+/*mat-form-field {*/
+/*  flex: 1; !* Ajustează lățimea câmpurilor după nevoi *!*/
+/*}*/
+
+

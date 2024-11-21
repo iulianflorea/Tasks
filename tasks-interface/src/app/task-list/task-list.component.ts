@@ -30,7 +30,7 @@ import {MatDialog} from "@angular/material/dialog";
 })
 export class TaskListComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['id', 'toDo', 'status', 'user', 'beginDate', 'completedDate', 'update', 'delete', 'view'];
+  displayedColumns: string[] = ['id', 'toDo', 'status', 'user', 'beginDate', 'completedDate', 'view'];
   dataSource: TaskDto[] = [];
   dataSource2 = new MatTableDataSource<TaskDto>(this.dataSource);
   keyword: string = '';
