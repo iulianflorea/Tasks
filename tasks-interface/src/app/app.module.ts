@@ -21,6 +21,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatIconModule} from "@angular/material/icon";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatDialogModule} from "@angular/material/dialog";
+import {PopUpTaskComponent} from "./pop-up-task/pop-up-task.component";
 
 
 @NgModule({

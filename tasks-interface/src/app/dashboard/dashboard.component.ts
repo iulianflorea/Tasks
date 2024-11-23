@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
 import {TaskDto} from "../dtos/TaskDto";
 import {MatTableDataSource, MatTableModule} from "@angular/material/table";
 import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
@@ -13,31 +13,47 @@ import {MatInputModule} from "@angular/material/input";
 import {FormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatDialog} from "@angular/material/dialog";
+import {PopUpTaskComponent} from "../pop-up-task/pop-up-task.component";
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
   providers: [MatNativeDateModule, NativeDateAdapter],
-
-  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, FormsModule, MatIconModule, MatButtonModule, RouterLink, NgForOf, MatDatepickerModule, MatNativeDateModule, MatButtonToggleModule],
+  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, FormsModule, MatIconModule, MatButtonModule, RouterLink, NgForOf, MatDatepickerModule, MatNativeDateModule, MatButtonToggleModule, NgIf, PopUpTaskComponent],
   standalone: true
 })
 export class DashboardComponent implements AfterViewInit{
 
-  displayedColumns: string[] = ['id', 'toDo', 'status', 'user', 'beginDate', 'completedDate', 'update', 'delete'];
+  displayedColumns: string[] = ['id', 'toDo', 'status', 'user', 'beginDate', 'completedDate', 'view'];
   dataSource: TaskDto[] = [];
   dataSource2 = new MatTableDataSource<TaskDto>(this.dataSource);
   keyword: string = '';
   searchResult: TaskDto[] = [];
+  @Input() item: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private httpClient: HttpClient, private router: Router) {
 
+
+  constructor(private httpClient: HttpClient, private router: Router, private dialogRef: MatDialog) {
+
+  }
+
+  selectedItem: any = null;
+  isModalOpen = false;
+
+  openModal(item: any) {
+    this.selectedItem = item;
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
   }
 
   selectedDate: Date = new Date();

@@ -11,7 +11,7 @@ import {FormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
 import {Observable} from "rxjs";
 import {MatButtonModule} from "@angular/material/button";
-import {CommonModule, NgForOf} from "@angular/common";
+import {CommonModule, NgForOf, NgIf} from "@angular/common";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule, NativeDateAdapter} from "@angular/material/core";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
@@ -26,7 +26,7 @@ import {MatDialog} from "@angular/material/dialog";
   standalone: true,
   providers: [MatNativeDateModule, NativeDateAdapter],
 
-  imports: [MatFormFieldModule, MatInputModule,CommonModule, MatTableModule, MatSortModule, MatPaginatorModule, FormsModule, MatIconModule, MatButtonModule, RouterLink, NgForOf, MatDatepickerModule, MatNativeDateModule, MatButtonToggleModule, RouterLinkActive, PopUpTaskComponent],
+  imports: [MatFormFieldModule, MatInputModule, CommonModule, MatTableModule, MatSortModule, MatPaginatorModule, FormsModule, MatIconModule, MatButtonModule, RouterLink, NgForOf, NgIf, MatDatepickerModule, MatNativeDateModule, MatButtonToggleModule, RouterLinkActive, PopUpTaskComponent],
 })
 export class TaskListComponent implements AfterViewInit {
 

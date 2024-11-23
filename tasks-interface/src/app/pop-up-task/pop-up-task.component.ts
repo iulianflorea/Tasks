@@ -9,6 +9,7 @@ import {TaskListComponent} from "../task-list/task-list.component";
 import {MatButtonModule} from "@angular/material/button";
 import {MatTableModule} from "@angular/material/table";
 import {MatIconModule} from "@angular/material/icon";
+import {DashboardComponent} from "../dashboard/dashboard.component";
 
 @Component({
   selector: 'app-pop-up-task',
@@ -45,16 +46,10 @@ export class PopUpTaskComponent {
     this.close.emit(); // Emite evenimentul când modalul trebuie închis
   }
 
-  selectedItem: any = null;
-  isModalOpen = false;
-
-  openModal(item: any) {
-    this.selectedItem = item;
-    this.isModalOpen = true;
-  }
 
   protected readonly TaskDto = TaskDto;
-  protected readonly TaskListComponent = TaskListComponent;
+  // protected readonly TaskListComponent = TaskListComponent;
+  protected readonly DashboardComponent = DashboardComponent;
 
   delete(taskDto: TaskDto) {
     const id = taskDto.id;
