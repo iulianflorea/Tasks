@@ -12,7 +12,7 @@ import {MatSortModule} from "@angular/material/sort";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatSelectModule} from "@angular/material/select";
@@ -24,7 +24,7 @@ import {MatSelectModule} from "@angular/material/select";
   standalone: true,
   providers: [MatNativeDateModule, NativeDateAdapter],
 
-  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, FormsModule, MatIconModule, MatButtonModule, RouterLink, NgForOf, MatDatepickerModule, MatNativeDateModule, MatButtonToggleModule, MatOptionModule, MatSelectModule, ReactiveFormsModule],
+  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, FormsModule, MatIconModule, MatButtonModule, RouterLink, NgForOf, MatDatepickerModule, MatNativeDateModule, MatButtonToggleModule, MatOptionModule, MatSelectModule, ReactiveFormsModule, NgIf],
 })
 export class TaskFormComponent implements OnInit {
 
@@ -112,4 +112,5 @@ export class TaskFormComponent implements OnInit {
     })
   }
 
+  protected readonly localStorage = localStorage;
 }
