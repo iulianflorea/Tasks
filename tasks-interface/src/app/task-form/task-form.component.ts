@@ -32,8 +32,8 @@ export class TaskFormComponent implements OnInit {
   toDo: any;
   status: any;
   userId: any;
-  beginDate: any;
-  completedDate: any;
+  beginDate?: any;
+  completedDate?: any;
   userList: UserDto[] = [];
 
   constructor(private httpClient: HttpClient, private router: Router, private route: ActivatedRoute) {
@@ -64,8 +64,10 @@ export class TaskFormComponent implements OnInit {
     }
   }
 
-  selectedDate: Date = new Date();
-  selectedDate2: Date = new Date();
+
+
+  selectedDate: Date = this.beginDate;
+  selectedDate2: Date = this.completedDate;
 
   saveDate() {
     this.selectedDate.setMinutes(this.selectedDate.getMinutes() - this.selectedDate.getTimezoneOffset());
