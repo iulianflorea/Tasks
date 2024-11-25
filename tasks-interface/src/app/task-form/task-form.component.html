@@ -2,8 +2,8 @@
 
   <div class="task">
     <form [formGroup]="taskForm" (ngSubmit)="create()" class="task-form">
-      <h1 *ngIf="toDo">Update Task</h1>
-      <h1 *ngIf="!toDo">Create Task</h1>
+      <h1 *ngIf="id">Update Task</h1>
+      <h1 *ngIf="!id">Create Task</h1>
 
 
       <mat-form-field>
@@ -15,7 +15,7 @@
         <mat-label>Status</mat-label>
         <mat-select [(ngModel)]="status" [ngModelOptions]="{standalone: true}">
           <mat-option value="PENDING">PENDING</mat-option>
-          <mat-option value="InPROGRESS">InPROGRESS</mat-option>
+          <mat-option value="INPROGRESS">IN PROGRESS</mat-option>
           <mat-option value="COMPLETED">COMPLETED</mat-option>
         </mat-select>
       </mat-form-field>
@@ -46,10 +46,10 @@
         <mat-datepicker touchUi #picker2></mat-datepicker>
       </mat-form-field>
 
-      <button mat-raised-button *ngIf="!toDo" (click)="saveDate12()" type="submit" color="primary">Create</button>
-      <button mat-raised-button *ngIf="toDo" (click)="saveDate12()" type="submit" color="primary">Update</button>
-      <button mat-raised-button *ngIf="userId" routerLink="/dashboard" color="warn">Cancel</button>
-      <button mat-raised-button *ngIf="!userId" routerLink="/task-list" color="warn">Cancel</button>
+      <button mat-raised-button *ngIf="!id" type="submit" color="primary">Create</button>
+      <button mat-raised-button *ngIf="id"  type="submit" color="primary">Update</button>
+      <button mat-raised-button *ngIf="id" routerLink="/dashboard" color="warn">Cancel</button>
+      <button mat-raised-button *ngIf="!id" routerLink="/task-list" color="warn">Cancel</button>
     </form>
   </div>
 </div>

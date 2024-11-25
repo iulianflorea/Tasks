@@ -35,6 +35,8 @@ export class TaskFormComponent implements OnInit {
   beginDate?: any;
   completedDate?: any;
   userList: UserDto[] = [];
+  selectedDate: Date = new Date();
+  selectedDate2: Date = new Date();
 
   constructor(private httpClient: HttpClient, private router: Router, private route: ActivatedRoute) {
   }
@@ -65,45 +67,27 @@ export class TaskFormComponent implements OnInit {
   }
 
 
-
-  selectedDate: Date = this.beginDate;
-  selectedDate2: Date = this.completedDate;
-
-  saveDate() {
-    this.selectedDate.setMinutes(this.selectedDate.getMinutes() - this.selectedDate.getTimezoneOffset());
-    const savedDate = this.selectedDate.toISOString().substring(0, 10) // Formatare ca string YYYY-MM-DD
-    this.beginDate = savedDate;
-    console.log('Data salvată:', savedDate);
-
-  }
-
-  saveDate2() {
-    this.selectedDate2.setMinutes(this.selectedDate2.getMinutes() - this.selectedDate2.getTimezoneOffset());
-    const savedDate = this.selectedDate2.toISOString().substring(0, 10) // Formatare ca string YYYY-MM-DD
-    this.completedDate = savedDate;
-    console.log('Data salvată:', savedDate);
-
-  }
-
-  saveDate12() {
-    this.saveDate();
-    this.saveDate2();
-  }
-
   create() {
     var task = {
       id: this.id,
       toDo: this.toDo,
       status: this.status.toUpperCase(),
       userId: this.userId,
-      beginDate: this.selectedDate,
-      completedDate: this.selectedDate2
+      beginDate: this.convertDatePiker(this.beginDate),
+      completedDate: this.convertDatePiker(this.completedDate)
     }
+    console.log(task);
     this.httpClient.post("/api/task/create", task).subscribe((response) => {
       console.log(response);
       alert("Task was created");
       this.router.navigate(["/task-list"]);
     })
+  }
+
+  convertDatePiker(date?: any) {
+    date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
+     // Formatare ca string YYYY-MM-DD
+    return date.toISOString().substring(0, 10);
   }
 
   getUser() {
