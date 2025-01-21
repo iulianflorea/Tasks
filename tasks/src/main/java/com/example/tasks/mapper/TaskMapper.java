@@ -15,6 +15,7 @@ public class TaskMapper {
         return Task.builder()
                 .userId(taskDto.getUserId())
                 .toDo(taskDto.getToDo())
+                .status(taskDto.getStatus())
                 .beginDate(taskDto.getBeginDate())
                 .completedDate(taskDto.getCompletedDate())
                 .build();
