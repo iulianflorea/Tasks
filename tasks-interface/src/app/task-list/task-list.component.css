@@ -13,6 +13,7 @@ td, th {
 
 
 .form-row {
+  margin: 30px;
   display: flex;
   gap: 16px; /* Spatiu între câmpuri */
   align-items: center;
@@ -23,7 +24,7 @@ mat-form-field {
 }
 
 .container {
-
+margin: 30px;
 }
 
 .container-list {
