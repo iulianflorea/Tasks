@@ -73,20 +73,24 @@ export class TaskFormComponent implements OnInit {
       toDo: this.toDo,
       status: this.status.toUpperCase(),
       userId: this.userId,
-      beginDate: this.convertDatePiker(this.beginDate),
-      completedDate: this.convertDatePiker(this.completedDate)
-    }
+      beginDate: this.beginDate ? this.convertDatePiker(new Date(this.beginDate)) : null,
+      completedDate: this.completedDate ? this.convertDatePiker(new Date(this.completedDate)) : null
+    };
     console.log(task);
     this.httpClient.post("/api/task/create", task).subscribe((response) => {
       console.log(response);
       alert("Task was created");
       this.router.navigate(["/task-list"]);
-    })
+    });
   }
 
   convertDatePiker(date?: any) {
+    if (!date || isNaN(new Date(date).getTime())) {
+      console.error("convertDatePiker: Invalid date", date);
+      return null;
+    }
+    date = new Date(date);
     date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
-     // Formatare ca string YYYY-MM-DD
     return date.toISOString().substring(0, 10);
   }
 
